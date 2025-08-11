@@ -1,3 +1,8 @@
+// Redirect to login if not logged in
+if (!localStorage.getItem('aurafyUser')) {
+    window.location.href = 'login.html';
+}
+
 // Global variables
         let currentPage = 'about';
         let timerInterval = null;
