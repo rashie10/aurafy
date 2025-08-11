@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Aurafy - Where You Refine Your Aura</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+
+<link href="style.css" rel="stylesheet"/></head>
+<body class="gradient-bg min-h-screen">
+<!-- Navigation -->
+<nav class="bg-white/80 backdrop-blur-md shadow-lg sticky top-0 z-50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-16">
+<div class="flex items-center space-x-2">
+<div class="w-8 h-8 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full flex items-center justify-center">
+<span class="text-white font-bold text-sm">A</span>
+</div>
+<h1 class="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Aurafy</h1>
+</div>
+<div class="flex space-x-8">
+<button class="nav-btn text-gray-700 hover:text-purple-600 font-medium transition-colors" data-page="about" onclick="showPage('about')">About</button>
+<button class="nav-btn text-gray-700 hover:text-purple-600 font-medium transition-colors" data-page="timer" onclick="showPage('timer')">Timer</button>
+<button class="nav-btn text-gray-700 hover:text-purple-600 font-medium transition-colors" data-page="stopwatch" onclick="showPage('stopwatch')">Stopwatch</button>
+<button class="nav-btn text-gray-700 hover:text-purple-600 font-medium transition-colors" data-page="notes" onclick="showPage('notes')">Notes</button>
+<button class="nav-btn text-gray-700 hover:text-purple-600 font-medium transition-colors" data-page="progress" onclick="showPage('progress')">Track Progress</button>
+</div>
+</div>
+</div>
+</nav>
+<!-- About Page -->
+<div class="page-content" id="about-page">
+<div class="max-w-6xl mx-auto px-4 py-12">
+<div class="text-center mb-12">
+<h2 class="text-5xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
+                    Where You Refine Your Aura
+                </h2>
+<p class="text-xl text-gray-600 italic mb-8">"Your aura reflects your actions."</p>
+<p class="text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed">
+                    Aurafy is a productivity-enhancing web app designed to help you manage your time, focus better, and stay organized — all while maintaining a calming, aesthetic workspace.
+                </p>
+</div>
+<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+<div class="bg-white/60 card-glow rounded-2xl p-6 text-center hover:transform hover:scale-105 transition-all cursor-pointer" onclick="showPage('timer')">
+<div class="w-16 h-16 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full flex items-center justify-center mx-auto mb-4">
+<span class="text-2xl">⏰</span>
+</div>
+<h3 class="text-xl font-semibold text-gray-800 mb-2">Pomodoro Timer</h3>
+<p class="text-gray-600">Focus sessions with customizable durations</p>
+</div>
+<div class="bg-white/60 card-glow rounded-2xl p-6 text-center hover:transform hover:scale-105 transition-all cursor-pointer" onclick="showPage('stopwatch')">
+<div class="w-16 h-16 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full flex items-center justify-center mx-auto mb-4">
+<span class="text-2xl">⏱️</span>
+</div>
+<h3 class="text-xl font-semibold text-gray-800 mb-2">Stopwatch</h3>
+<p class="text-gray-600">Track open-ended tasks with precision</p>
+</div>
+<div class="bg-white/60 card-glow rounded-2xl p-6 text-center hover:transform hover:scale-105 transition-all cursor-pointer" onclick="showPage('notes')">
+<div class="w-16 h-16 bg-gradient-to-r from-green-400 to-emerald-400 rounded-full flex items-center justify-center mx-auto mb-4">
+<span class="text-2xl">📝</span>
+</div>
+<h3 class="text-xl font-semibold text-gray-800 mb-2">Notes App</h3>
+<p class="text-gray-600">Quick-access notes while you focus</p>
+</div>
+<div class="bg-white/60 card-glow rounded-2xl p-6 text-center hover:transform hover:scale-105 transition-all">
+<div class="w-16 h-16 bg-gradient-to-r from-orange-400 to-red-400 rounded-full flex items-center justify-center mx-auto mb-4">
+<span class="text-2xl">📊</span>
+</div>
+<h3 class="text-xl font-semibold text-gray-800 mb-2">Progress Tracker</h3>
+<p class="text-gray-600">Daily analytics and motivation</p>
+</div>
+</div>
+<div class="bg-white/60 card-glow rounded-2xl p-8">
+<h3 class="text-2xl font-semibold text-gray-800 mb-6 text-center">Today's Progress</h3>
+<div class="grid md:grid-cols-3 gap-6">
+<div class="text-center">
+<div class="text-3xl font-bold text-purple-600" id="total-focus-time">0h 0m</div>
+<div class="text-gray-600">Focus Time</div>
+</div>
+<div class="text-center">
+<div class="text-3xl font-bold text-blue-600" id="total-stopwatch-time">0h 0m</div>
+<div class="text-gray-600">Stopwatch Time</div>
+</div>
+<div class="text-center">
+<div class="text-3xl font-bold text-green-600" id="notes-count">0</div>
+<div class="text-gray-600">Notes Created</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Timer Page -->
+<div class="page-content hidden" id="timer-page">
+<div class="max-w-4xl mx-auto px-4 py-12">
+<div class="text-center mb-8">
+<h2 class="text-4xl font-bold text-gray-800 mb-2">Pomodoro Timer</h2>
+<p class="text-gray-600">Focus deeply, rest mindfully</p>
+</div>
+<div class="grid lg:grid-cols-3 gap-8">
+<!-- Timer Section -->
+<div class="lg:col-span-2">
+<div class="bg-white/60 card-glow rounded-2xl p-8 text-center">
+<div class="relative w-64 h-64 mx-auto mb-8">
+<div class="timer-circle w-full h-full rounded-full flex items-center justify-center" style="--progress: 0deg;">
+<div class="bg-white w-48 h-48 rounded-full flex flex-col items-center justify-center shadow-inner">
+<div class="text-4xl font-bold text-gray-800" id="timer-display">25:00</div>
+<div class="text-sm text-gray-600 mt-2" id="timer-mode">Focus Session</div>
+</div>
+</div>
+</div>
+<div class="flex justify-center space-x-4 mb-6">
+<button class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-3 rounded-full font-semibold hover:from-purple-600 hover:to-pink-600 transition-all pulse-glow" id="timer-start" onclick="startTimer()">
+                                Start
+                            </button>
+<button class="bg-gray-500 text-white px-8 py-3 rounded-full font-semibold hover:bg-gray-600 transition-all hidden" id="timer-pause" onclick="pauseTimer()">
+                                Pause
+                            </button>
+<button class="bg-gray-300 text-gray-700 px-8 py-3 rounded-full font-semibold hover:bg-gray-400 transition-all" onclick="resetTimer()">
+                                Reset
+                            </button>
+</div>
+<div class="flex justify-center space-x-4">
+<div class="text-center">
+<input class="w-16 text-center border rounded-lg py-1" id="focus-duration" max="60" min="1" type="number" value="25"/>
+<div class="text-sm text-gray-600 mt-1">Focus (min)</div>
+</div>
+<div class="text-center">
+<input class="w-16 text-center border rounded-lg py-1" id="break-duration" max="30" min="1" type="number" value="5"/>
+<div class="text-sm text-gray-600 mt-1">Break (min)</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Side Tasks -->
+<div class="bg-white/60 card-glow rounded-2xl p-6">
+<h3 class="text-xl font-semibold text-gray-800 mb-4">Quick Tasks</h3>
+<div class="space-y-2 mb-4" id="task-list">
+<!-- Tasks will be added here -->
+</div>
+<div class="flex">
+<input class="flex-1 border rounded-l-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500" id="new-task" placeholder="Add a quick task..." type="text"/>
+<button class="bg-purple-500 text-white px-4 py-2 rounded-r-lg hover:bg-purple-600 transition-colors" onclick="addTask()">+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Stopwatch Page -->
+<div class="page-content hidden" id="stopwatch-page">
+<div class="max-w-2xl mx-auto px-4 py-12">
+<div class="text-center mb-8">
+<h2 class="text-4xl font-bold text-gray-800 mb-2">Stopwatch</h2>
+<p class="text-gray-600">Track your open-ended tasks</p>
+</div>
+<div class="bg-white/60 card-glow rounded-2xl p-12 text-center">
+<div class="text-6xl font-bold text-gray-800 mb-8" id="stopwatch-display">00:00:00</div>
+<div class="flex justify-center space-x-4">
+<button class="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-8 py-3 rounded-full font-semibold hover:from-blue-600 hover:to-cyan-600 transition-all pulse-glow" id="stopwatch-start" onclick="startStopwatch()">
+                        Start
+                    </button>
+<button class="bg-gray-500 text-white px-8 py-3 rounded-full font-semibold hover:bg-gray-600 transition-all hidden" id="stopwatch-pause" onclick="pauseStopwatch()">
+                        Pause
+                    </button>
+<button class="bg-gray-300 text-gray-700 px-8 py-3 rounded-full font-semibold hover:bg-gray-400 transition-all" onclick="resetStopwatch()">
+                        Reset
+                    </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Progress Page -->
+<div class="page-content hidden" id="progress-page">
+<div class="max-w-6xl mx-auto px-4 py-12">
+<div class="text-center mb-8">
+<h2 class="text-4xl font-bold text-gray-800 mb-2">Track Your Progress</h2>
+<p class="text-gray-600">Monitor your productivity journey</p>
+</div>
+<!-- Time Period Selector -->
+<div class="flex justify-center mb-8">
+<div class="bg-white/60 card-glow rounded-full p-2 flex space-x-2">
+<button class="px-6 py-2 rounded-full font-medium transition-all bg-gradient-to-r from-purple-500 to-pink-500 text-white" id="daily-btn" onclick="showProgressPeriod('daily')">Daily</button>
+<button class="px-6 py-2 rounded-full font-medium transition-all text-gray-600 hover:text-purple-600" id="weekly-btn" onclick="showProgressPeriod('weekly')">Weekly</button>
+</div>
+</div>
+<!-- Daily Progress -->
+<div class="progress-period" id="daily-progress">
+<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+<div class="bg-white/60 card-glow rounded-2xl p-6 text-center">
+<div class="w-16 h-16 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full flex items-center justify-center mx-auto mb-4">
+<span class="text-2xl">⏰</span>
+</div>
+<div class="text-3xl font-bold text-purple-600" id="daily-focus-time">0h 0m</div>
+<div class="text-gray-600">Focus Time Today</div>
+</div>
+<div class="bg-white/60 card-glow rounded-2xl p-6 text-center">
+<div class="w-16 h-16 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full flex items-center justify-center mx-auto mb-4">
+<span class="text-2xl">⏱️</span>
+</div>
+<div class="text-3xl font-bold text-blue-600" id="daily-stopwatch-time">0h 0m</div>
+<div class="text-gray-600">Stopwatch Time Today</div>
+</div>
+<div class="bg-white/60 card-glow rounded-2xl p-6 text-center">
+<div class="w-16 h-16 bg-gradient-to-r from-green-400 to-emerald-400 rounded-full flex items-center justify-center mx-auto mb-4">
+<span class="text-2xl">📝</span>
+</div>
+<div class="text-3xl font-bold text-green-600" id="daily-notes-count">0</div>
+<div class="text-gray-600">Notes Created Today</div>
+</div>
+<div class="bg-white/60 card-glow rounded-2xl p-6 text-center">
+<div class="w-16 h-16 bg-gradient-to-r from-orange-400 to-red-400 rounded-full flex items-center justify-center mx-auto mb-4">
+<span class="text-2xl">🎯</span>
+</div>
+<div class="text-3xl font-bold text-orange-600" id="daily-sessions">0</div>
+<div class="text-gray-600">Focus Sessions</div>
+</div>
+</div>
+<div class="bg-white/60 card-glow rounded-2xl p-8">
+<h3 class="text-2xl font-semibold text-gray-800 mb-6">Today's Activity</h3>
+<div class="space-y-4" id="daily-activity-log">
+<div class="text-gray-500 text-center py-8">Start using Aurafy to see your daily activity here!</div>
+</div>
+</div>
+</div>
+<!-- Weekly Progress -->
+<div class="progress-period hidden" id="weekly-progress">
+<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+<div class="bg-white/60 card-glow rounded-2xl p-6 text-center">
+<div class="w-16 h-16 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full flex items-center justify-center mx-auto mb-4">
+<span class="text-2xl">⏰</span>
+</div>
+<div class="text-3xl font-bold text-purple-600" id="weekly-focus-time">0h 0m</div>
+<div class="text-gray-600">Focus Time This Week</div>
+</div>
+<div class="bg-white/60 card-glow rounded-2xl p-6 text-center">
+<div class="w-16 h-16 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full flex items-center justify-center mx-auto mb-4">
+<span class="text-2xl">⏱️</span>
+</div>
+<div class="text-3xl font-bold text-blue-600" id="weekly-stopwatch-time">0h 0m</div>
+<div class="text-gray-600">Stopwatch Time This Week</div>
+</div>
+<div class="bg-white/60 card-glow rounded-2xl p-6 text-center">
+<div class="w-16 h-16 bg-gradient-to-r from-green-400 to-emerald-400 rounded-full flex items-center justify-center mx-auto mb-4">
+<span class="text-2xl">📝</span>
+</div>
+<div class="text-3xl font-bold text-green-600" id="weekly-notes-count">0</div>
+<div class="text-gray-600">Notes Created This Week</div>
+</div>
+<div class="bg-white/60 card-glow rounded-2xl p-6 text-center">
+<div class="w-16 h-16 bg-gradient-to-r from-orange-400 to-red-400 rounded-full flex items-center justify-center mx-auto mb-4">
+<span class="text-2xl">📊</span>
+</div>
+<div class="text-3xl font-bold text-orange-600" id="weekly-average">0h 0m</div>
+<div class="text-gray-600">Daily Average</div>
+</div>
+</div>
+<div class="bg-white/60 card-glow rounded-2xl p-8">
+<h3 class="text-2xl font-semibold text-gray-800 mb-6">Weekly Overview</h3>
+<div class="grid grid-cols-7 gap-2 mb-4">
+<div class="text-center text-sm font-medium text-gray-600">Mon</div>
+<div class="text-center text-sm font-medium text-gray-600">Tue</div>
+<div class="text-center text-sm font-medium text-gray-600">Wed</div>
+<div class="text-center text-sm font-medium text-gray-600">Thu</div>
+<div class="text-center text-sm font-medium text-gray-600">Fri</div>
+<div class="text-center text-sm font-medium text-gray-600">Sat</div>
+<div class="text-center text-sm font-medium text-gray-600">Sun</div>
+</div>
+<div class="grid grid-cols-7 gap-2" id="weekly-chart">
+<!-- Weekly chart bars will be generated here -->
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Notes Page -->
+<div class="page-content hidden" id="notes-page">
+<div class="max-w-6xl mx-auto px-4 py-12">
+<div class="text-center mb-8">
+<h2 class="text-4xl font-bold text-gray-800 mb-2">Notes</h2>
+<p class="text-gray-600">Capture your thoughts and ideas</p>
+</div>
+<div class="grid lg:grid-cols-3 gap-6">
+<!-- Notes List -->
+<div class="lg:col-span-1">
+<div class="bg-white/60 card-glow rounded-2xl p-6">
+<div class="flex justify-between items-center mb-4">
+<h3 class="text-xl font-semibold text-gray-800">Your Notes</h3>
+<button class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors" onclick="createNewNote()">+ New</button>
+</div>
+<div class="space-y-2" id="notes-list">
+<!-- Notes will be listed here -->
+</div>
+</div>
+</div>
+<!-- Note Editor -->
+<div class="lg:col-span-2">
+<div class="bg-white/60 card-glow rounded-2xl p-6">
+<div class="flex justify-between items-center mb-4">
+<input class="text-xl font-semibold bg-transparent border-none outline-none flex-1" id="note-title" placeholder="Note title..." type="text"/>
+<div class="flex space-x-2">
+<button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors" onclick="saveCurrentNote()">Save</button>
+<button class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-colors" onclick="deleteCurrentNote()">Delete</button>
+</div>
+</div>
+<textarea class="w-full h-96 bg-transparent border border-gray-200 rounded-lg p-4 resize-none focus:outline-none focus:ring-2 focus:ring-green-500" id="note-content" placeholder="Start writing your note..."></textarea>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<script src="script.js"></script></body>
+</html>

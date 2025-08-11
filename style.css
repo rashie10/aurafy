@@ -1,0 +1,11 @@
+body { font-family: 'Poppins', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); }
+        .card-glow { box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37); backdrop-filter: blur(4px); }
+        .timer-circle { 
+            background: conic-gradient(#e879f9 0deg, #e879f9 var(--progress, 0deg), #f3e8ff var(--progress, 0deg)); 
+        }
+        .pulse-glow { animation: pulse-glow 2s infinite; }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(232, 121, 249, 0.4); }
+            50% { box-shadow: 0 0 30px rgba(232, 121, 249, 0.8); }
+        }
